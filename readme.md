@@ -11,47 +11,31 @@
 
 
 * [Dataset](#dataset)
-* [Summary of Findings](#summary-of-findings)
 * [Model Predictions](#model-predictions)
 
 ## Dataset
 
-### Context:
-This dataset is a practice of web scraping techniques. The web scraping has been applied on IKEA Saudi Arabian website for the furniture category. The scraped website link: https://www.ikea.com/sa/en/cat/furniture-fu001/
+### Context
+It is important that credit card companies are able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase.
 
-The data requested by 4/20/2020. <br>
-dataset: https://www.kaggle.com/ahmedkallam/ikea-sa-furniture-web-scraping
+### Content
+The datasets contains transactions made by credit cards in September 2013 by european cardholders. This dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions.
 
-### Content:
+It contains only numerical input variables which are the result of a PCA transformation. Unfortunately, due to confidentiality issues, we cannot provide the original features and more background information about the data. Features V1, V2, … V28 are the principal components obtained with PCA, the only features which have not been transformed with PCA are 'Time' and 'Amount'. Feature 'Time' contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-senstive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
 
-* item_id : item id wich can be used later to merge with other IKEA dataframes
-* name: the commercial name of items
-* category:the furniture category that the item belongs to (Sofas, beds, chairs, Trolleys,…)
-* Price: the current price in Saudi Riyals as it is shown in the website by 4/20/2020
-* old_price: the price of item in Saudi Riyals before discount
-* Short_description: a brief description of the item
-* full_Description: a very detailed description of the item. Because it is long, it is dropped from the final dataframe, but it   is available in the code in case it needs to be analyzed.
-* designer: The name of the designer who designed the item. this is extracted from the full_description column.
-* size: the dimensions of the item including a lot of details.As a lot of dimensions mentioned and they vary from item to item,
-  the most common dimensions have been extracted which are: Height, Wideh, and Depth. This column is dropped from the final       dataframe, but it is available in the code in case it is needed.
-* width: Width of the item in Centimeter
-* height: Height of the item in Centimeter
-* depth: Depth of the item in Centimeter
-* sellable_Online: if the item is available for online purchasing or in-stores only (Boolean)
-* other_colors: if other colors are available for the item, or just one color as displayed in the website (Boolean)
-* link: the web link of the item
-
-### Licences:
-The scraped website link: https://www.ikea.com/sa/en/cat/furniture-fu001/
+### Ref: https://www.kaggle.com/mlg-ulb/creditcardfraud
 
 ### Methods Used
 * Data Wrangling
-* Exploratory Data Analysis
+* Data Preprocessing
 * Feature engineering
-* Data Visualization
-  - Univariate Exploration
-  - Bivariate Exploration
-  - Multivariate Exploration
+* Imbalanced Data methods
+  - Class weights
+  - SMOTE
+* Machine Learning (Support Vector Machine)
+* Metric Visualization 
+  - ROC
+  - Confusion Matrix
 * etc.
 
 ### Technologies
@@ -59,35 +43,21 @@ The scraped website link: https://www.ikea.com/sa/en/cat/furniture-fu001/
 * Pandas, , Numpy
 * Matplotlib, Seaborn, plotnine
 * jupyter
-* sklearn, tenserflow, keras
+* sklearn, Imblearn
 * etc. 
 
 <hr>
 
-## Summary of Findings
+## Model Predictions
 
-### Data Wrangling
+Confusion matrix
 
-* hug amount of null values in the depth height and width features
-* old_price feature needs some modifications:
-	1. remove the "SR " string
-	2. Change the "No old price" to the same price as now
-	3. make it float
+	[[55476  1175]
+	 [   15    80]]
 
-### Exploratory Data Analysis
+f1       : 0.11851851851851852
+recall   : 0.8421052631578947
+precision: 0.06374501992031872
+roc auc  : 0.906650042875631
 
-* most items are sellable online (99.2%)
-* and only 40% of items have other colors
-* most of the items don't have any discount on it
-* for low prices there is two line relations, one that shares the same line with the high prices and one limited only for low prices
-* this relation is roughly 25% discount
-* items from 8k to 10k SR don't have any discount that follows this relation. (only 200 SR discount)
-* items that are sellable online are more expensive than those are local only
 
-<hr>
-
-## Model Predictions (under development)
-
-* made two models
-1. Model 1: Item's price prediction
-2. Model 2: Category classifier
