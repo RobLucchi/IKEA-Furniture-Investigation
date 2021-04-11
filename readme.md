@@ -1,11 +1,3 @@
-<p>
-  <a href="https://www.oecd.org/pisa/">  
-    
-  ![IKEA](/imgs/ikea-logo-new-hero-1.jpg)
-  
-  </a>
-</p>
-
 # Investigating IKEA's Saudi Arabian Furniture Dataset
 ### By Ahmed Alaa Mousa
 
@@ -55,9 +47,9 @@ Confusion matrix
 	[[55476  1175]
 	 [   15    80]]
 
-f1       : 0.11851851851851852
-recall   : 0.8421052631578947
-precision: 0.06374501992031872
-roc auc  : 0.906650042875631
+- f1       : 0.11851851851851852
+- recall   : 0.8421052631578947
+- precision: 0.06374501992031872
+- roc auc  : 0.906650042875631
 
 
